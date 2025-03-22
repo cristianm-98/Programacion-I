@@ -77,31 +77,4 @@ public class Agenda {
         }
         return flag;
     }
-
-    public boolean crearContacto(Contacto nuevoContacto) {
-        if (nuevoContacto == null || verificarContacto(nuevoContacto.getNombre(), nuevoContacto.getTelefono())) {
-            return false; //No se agrega si es null o ya existe
-        }
-        int index = encontrarPosicionValido();
-        if (index != -1) {
-            listaContactos[index] = nuevoContacto;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean crearContactoNew(Contacto newContacto) {
-        if (newContacto == null || newContacto.getNombre().equals(nombre)) {
-            return false;
-        }
-        int indice=-0;
-        if(indice!=-1){
-            listaContactos[indice]=newContacto;
-            return true;
-        }
-        return false;
-    }
-
-
-
 }
