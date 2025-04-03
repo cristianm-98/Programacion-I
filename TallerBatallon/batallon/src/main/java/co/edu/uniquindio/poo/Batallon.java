@@ -1,8 +1,12 @@
+package co.edu.uniquindio.poo;
+
 import java.util.LinkedList;
 
 public class Batallon {
     private String nombre;
     private LinkedList<Vehiculo>listaVehiculos;
+    private LinkedList<Mision>listaMisiones;
+
     private LinkedList<TransporteTropa>listTransporteTropas;
     private LinkedList<Blindado>listBlindados;
     private LinkedList<Apoyo>listApoyos;
@@ -11,6 +15,8 @@ public class Batallon {
     public Batallon(String nombre){
         this.nombre=nombre;
         listaVehiculos=new LinkedList<>();
+        listaMisiones=new LinkedList<>();
+
         listTransporteTropas=new LinkedList<>();
         listBlindados=new LinkedList<>();
         listApoyos=new LinkedList<>();
@@ -20,6 +26,14 @@ public class Batallon {
     }
     public void setNombre(String nombre){
         this.nombre=nombre;
+    }
+
+    public LinkedList<Mision> getListaMisiones() {
+        return listaMisiones;
+    }
+
+    public void setListaMisiones(LinkedList<Mision> listaMisiones) {
+        this.listaMisiones = listaMisiones;
     }
 
     public LinkedList<TransporteTropa> getListTransporteTropas() {
