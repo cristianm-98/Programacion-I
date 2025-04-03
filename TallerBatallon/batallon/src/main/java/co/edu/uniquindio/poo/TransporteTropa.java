@@ -16,4 +16,16 @@ public class TransporteTropa extends Vehiculo {
         this.capacidadSoldado = capacidadSoldado;
     }
 
+    @Override
+    public String toString() {
+        return "TransporteTropa{" +
+                "id='" + id + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", fechaFabricacion=" + fechaFabricacion +
+                ", kilometraje=" + kilometraje +
+                ", misionCompletadas=" + misionCompletadas +
+                ", estadoOperativo=" + estadoOperativo +
+                ", capacidadSoldado=" + capacidadSoldado +
+                '}';
+    }
 }

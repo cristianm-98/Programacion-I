@@ -64,4 +64,15 @@ public class Vehiculo {
         this.estadoOperativo = estadoOperativo;
     }
 
+    @Override
+    public String toString() {
+        return "Vehiculo{" +
+                "id='" + id + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", fechaFabricacion=" + fechaFabricacion +
+                ", kilometraje=" + kilometraje +
+                ", misionCompletadas=" + misionCompletadas +
+                ", estadoOperativo=" + estadoOperativo +
+                '}';
+    }
 }

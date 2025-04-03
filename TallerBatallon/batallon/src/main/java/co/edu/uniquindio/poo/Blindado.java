@@ -17,4 +17,16 @@ public class Blindado extends Vehiculo {
         this.nivelBlindaje=nivelBlindaje;
     }
 
+    @Override
+    public String toString() {
+        return "Blindado{" +
+                "nivelBlindaje=" + nivelBlindaje +
+                ", estadoOperativo=" + estadoOperativo +
+                ", misionCompletadas=" + misionCompletadas +
+                ", kilometraje=" + kilometraje +
+                ", fechaFabricacion=" + fechaFabricacion +
+                ", modelo='" + modelo + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }
