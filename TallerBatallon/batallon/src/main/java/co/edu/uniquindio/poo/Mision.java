@@ -1,35 +1,59 @@
 package co.edu.uniquindio.poo;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 
 public class Mision {
+    private String id;
     private LocalDate fechaMision;
     private String ubicacion;
-    private String personalAsignado;
+    private LinkedList<String>listaPersonalAsignado;
+    private Vehiculo theVehiculo;
 
-    public Mision(LocalDate fechaMision, String ubicacion, String personalAsignado) {
+    public Mision(String id,LocalDate fechaMision, String ubicacion) {
         this.fechaMision = fechaMision;
         this.ubicacion = ubicacion;
-        this.personalAsignado = personalAsignado;
+        listaPersonalAsignado=new LinkedList<>();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public LocalDate getFechaMision() {
         return fechaMision;
     }
-    public String getUbicacion(){
+
+    public void setFechaMision(LocalDate fechaMision) {
+        this.fechaMision = fechaMision;
+    }
+
+    public String getUbicacion() {
         return ubicacion;
     }
-    public String getPersonalAsignado(){
-        return personalAsignado;
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
-    public void setFechaMision(LocalDate fechaMision){
-        this.fechaMision=fechaMision;
+
+    public LinkedList<String> getListaPersonalAsignado() {
+        return listaPersonalAsignado;
     }
-    public void setUbicacion(String ubicacion){
-        this.ubicacion=ubicacion;
+
+    public void setListaPersonalAsignado(LinkedList<String> listaPersonalAsignado) {
+        this.listaPersonalAsignado = listaPersonalAsignado;
     }
-    public void setPersonalAsignado(String personalAsignado){
-        this.personalAsignado=personalAsignado;
+
+    public Vehiculo getTheVehiculo() {
+        return theVehiculo;
+    }
+
+    public void setTheVehiculo(Vehiculo theVehiculo) {
+        this.theVehiculo = theVehiculo;
     }
 
     @Override
@@ -37,7 +61,7 @@ public class Mision {
         return "Mision{" +
                 "fechaMision=" + fechaMision +
                 ", ubicacion='" + ubicacion + '\'' +
-                ", personalAsignado='" + personalAsignado + '\'' +
+                ", personalAsignado='" + listaPersonalAsignado + '\'' +
                 '}';
     }
 }

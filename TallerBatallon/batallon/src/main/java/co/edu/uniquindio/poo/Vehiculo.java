@@ -1,20 +1,24 @@
 package co.edu.uniquindio.poo;
 
-public class Vehiculo {
+import java.util.LinkedList;
+
+public abstract class Vehiculo {
     protected String id;
     protected String modelo;
     protected int fechaFabricacion;
     protected double kilometraje;
     protected int misionCompletadas;
     protected EstadoOperativo estadoOperativo;
+    protected LinkedList<Mision>listaMisiones;
 
-    public Vehiculo(String id, String modelo,int fechaFabricacion, double kilometraje,int misionCompletadas,EstadoOperativo estadoOperativo) {
+    public Vehiculo(String id, String modelo,int fechaFabricacion, double kilometraje,EstadoOperativo estadoOperativo) {
         this.id = id;
         this.modelo = modelo;
         this.fechaFabricacion = fechaFabricacion;
         this.kilometraje = kilometraje;
-        this.misionCompletadas = misionCompletadas;
+        this.misionCompletadas = 0;
         this.estadoOperativo = estadoOperativo;
+        listaMisiones=new LinkedList<>();
     }
 
     public String getId() {
@@ -64,15 +68,23 @@ public class Vehiculo {
         this.estadoOperativo = estadoOperativo;
     }
 
+    public LinkedList<Mision> getListaMisiones() {
+        return listaMisiones;
+    }
+
+    public void setListaMisiones(LinkedList<Mision> listaMisiones) {
+        this.listaMisiones = listaMisiones;
+    }
+
     @Override
     public String toString() {
-        return "Vehiculo{" +
-                "id='" + id + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", fechaFabricacion=" + fechaFabricacion +
-                ", kilometraje=" + kilometraje +
-                ", misionCompletadas=" + misionCompletadas +
-                ", estadoOperativo=" + estadoOperativo +
-                '}';
+        return "DATOS DE VEHICULOS" + "\n" +
+                "Id " + id +
+                " Modelo " + modelo +
+                "Año de fabricacion " + fechaFabricacion +
+                "Kilometraje" + kilometraje +
+                "Mision Completadas " + misionCompletadas +
+                "Estado Operativo" + estadoOperativo;
+
     }
 }

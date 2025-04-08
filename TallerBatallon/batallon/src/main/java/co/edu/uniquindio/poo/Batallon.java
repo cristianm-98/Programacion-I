@@ -7,9 +7,10 @@ public class Batallon {
     private LinkedList<Vehiculo>listaVehiculos;
     private LinkedList<Mision>listaMisiones;
 
-    private LinkedList<TransporteTropa>listTransporteTropas;
-    private LinkedList<Blindado>listBlindados;
-    private LinkedList<Apoyo>listApoyos;
+
+    private LinkedList<VehiculoTransporteTropa>listTransporteTropas;
+    private LinkedList<VehiculoBlindado>listBlindados;
+    private LinkedList<VehiculoApoyo>listApoyos;
 
 
     public Batallon(String nombre){
@@ -36,27 +37,27 @@ public class Batallon {
         this.listaMisiones = listaMisiones;
     }
 
-    public LinkedList<TransporteTropa> getListTransporteTropas() {
+    public LinkedList<VehiculoTransporteTropa> getListTransporteTropas() {
         return listTransporteTropas;
     }
 
-    public void setListTransporteTropas(LinkedList<TransporteTropa> listTransporteTropas) {
+    public void setListTransporteTropas(LinkedList<VehiculoTransporteTropa> listTransporteTropas) {
         this.listTransporteTropas = listTransporteTropas;
     }
 
-    public LinkedList<Blindado> getListBlindados() {
+    public LinkedList<VehiculoBlindado> getListBlindados() {
         return listBlindados;
     }
 
-    public void setListBlindados(LinkedList<Blindado> listBlindados) {
+    public void setListBlindados(LinkedList<VehiculoBlindado> listBlindados) {
         this.listBlindados = listBlindados;
     }
 
-    public LinkedList<Apoyo> getListApoyos() {
+    public LinkedList<VehiculoApoyo> getListApoyos() {
         return listApoyos;
     }
 
-    public void setListApoyos(LinkedList<Apoyo> listApoyos) {
+    public void setListApoyos(LinkedList<VehiculoApoyo> listApoyos) {
         this.listApoyos = listApoyos;
     }
 
@@ -74,6 +75,7 @@ public class Batallon {
                 + " Nombre" + nombre;
     }
 
+    //Metodo para obtener la lista de los Vehiculos
     public LinkedList<Vehiculo>obtenerVehiculosConMisiones(){
         LinkedList<Vehiculo>vehiculosMisionesCompleto=new LinkedList<>();
 
@@ -85,6 +87,7 @@ public class Batallon {
         return vehiculosMisionesCompleto;
     }
 
+    //Metodo para obtener la lista de los vehiculos de cada una de las listas
     public LinkedList<Vehiculo>obtenerVehiculos(){
         LinkedList<Vehiculo>vehiculosMisionesCompletadas=new LinkedList<>();
 
@@ -105,6 +108,4 @@ public class Batallon {
         }
         return vehiculosMisionesCompletadas;
     }
-
-
 }
