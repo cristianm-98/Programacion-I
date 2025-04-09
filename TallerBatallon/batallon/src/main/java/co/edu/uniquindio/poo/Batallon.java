@@ -3,30 +3,25 @@ package co.edu.uniquindio.poo;
 import java.util.LinkedList;
 
 public class Batallon {
+
     private String nombre;
-    private LinkedList<Vehiculo>listaVehiculos;
-    private LinkedList<Mision>listaMisiones;
+    private LinkedList<Vehiculo> listaVehiculos;
+    private LinkedList<Mision> listaMisiones;
 
 
-    private LinkedList<VehiculoTransporteTropa>listTransporteTropas;
-    private LinkedList<VehiculoBlindado>listBlindados;
-    private LinkedList<VehiculoApoyo>listApoyos;
+    public Batallon(String nombre) {
+        this.nombre = nombre;
+        listaVehiculos = new LinkedList<>();
+        listaMisiones = new LinkedList<>();
 
-
-    public Batallon(String nombre){
-        this.nombre=nombre;
-        listaVehiculos=new LinkedList<>();
-        listaMisiones=new LinkedList<>();
-
-        listTransporteTropas=new LinkedList<>();
-        listBlindados=new LinkedList<>();
-        listApoyos=new LinkedList<>();
     }
-    public String getNombre(){
+
+    public String getNombre() {
         return nombre;
     }
-    public void setNombre(String nombre){
-        this.nombre=nombre;
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public LinkedList<Mision> getListaMisiones() {
@@ -35,30 +30,6 @@ public class Batallon {
 
     public void setListaMisiones(LinkedList<Mision> listaMisiones) {
         this.listaMisiones = listaMisiones;
-    }
-
-    public LinkedList<VehiculoTransporteTropa> getListTransporteTropas() {
-        return listTransporteTropas;
-    }
-
-    public void setListTransporteTropas(LinkedList<VehiculoTransporteTropa> listTransporteTropas) {
-        this.listTransporteTropas = listTransporteTropas;
-    }
-
-    public LinkedList<VehiculoBlindado> getListBlindados() {
-        return listBlindados;
-    }
-
-    public void setListBlindados(LinkedList<VehiculoBlindado> listBlindados) {
-        this.listBlindados = listBlindados;
-    }
-
-    public LinkedList<VehiculoApoyo> getListApoyos() {
-        return listApoyos;
-    }
-
-    public void setListApoyos(LinkedList<VehiculoApoyo> listApoyos) {
-        this.listApoyos = listApoyos;
     }
 
     public LinkedList<Vehiculo> getListaVehiculos() {
@@ -70,10 +41,61 @@ public class Batallon {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "DATOS DEL BATALLON \n"
                 + " Nombre" + nombre;
     }
+
+    //--------Realizacion del CRUD------------
+
+    //Metodo para buscarVehiculo
+    public Vehiculo buscarVehiculo(String id){
+        for(Vehiculo vehiculo:listaVehiculos){
+            if(vehiculo.getId().equals(id)){
+                return vehiculo;
+            }
+        }
+        return null;
+    }
+
+    //Metodo para Almacenar
+    public void agregarVehiculo(Vehiculo vehiculo) {
+        listaVehiculos.add(vehiculo);
+    }
+
+    //Metodo para Obtener
+    public LinkedList<Vehiculo> obtenerVehiculo() {
+        return listaVehiculos;
+    }
+
+    //Metodo para Eliminar
+    public boolean eliminarVehiculo(String id){
+        for(Vehiculo vehiculo:listaVehiculos){
+            if(vehiculo.getId().equals(id)){
+                listaVehiculos.remove(vehiculo);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Metodo para Actualizar
+    public boolean actulizarVehiculo(String id, String modelo, int fechaFabricacion,double kilometraje, EstadoOperativo estadoOperativo){
+        for(Vehiculo vehiculo:listaVehiculos){
+            if(vehiculo.getId().equals(id)){
+                vehiculo.setId(id);
+                vehiculo.setModelo(modelo);
+                vehiculo.setFechaFabricacion(fechaFabricacion);
+                vehiculo.setKilometraje(kilometraje);
+                vehiculo.setEstadoOperativo(estadoOperativo);
+                return true;
+
+            }
+        }
+        return false;
+    }
+
+    //------------Finalizacion del CRUD
 
     //Metodo para obtener la lista de los Vehiculos
     public LinkedList<Vehiculo>obtenerVehiculosConMisiones(){
@@ -87,25 +109,12 @@ public class Batallon {
         return vehiculosMisionesCompleto;
     }
 
-    //Metodo para obtener la lista de los vehiculos de cada una de las listas
-    public LinkedList<Vehiculo>obtenerVehiculos(){
-        LinkedList<Vehiculo>vehiculosMisionesCompletadas=new LinkedList<>();
-
-        for(Vehiculo vehiculo:listTransporteTropas){
-            if(vehiculo.getMisionCompletadas()>50){
-                vehiculosMisionesCompletadas.add(vehiculo);
+    public boolean estaDisponible(String id){
+        for(Vehiculo vehiculo:listaVehiculos){
+            if(vehiculo.getId().equals(id) && vehiculo.estadoOperativo.equals(EstadoOperativo.DISPONIBLE)){
+                return true;
             }
         }
-        for(Vehiculo vehiculo:listBlindados){
-            if(vehiculo.getMisionCompletadas()>50){
-                vehiculosMisionesCompletadas.add(vehiculo);
-            }
-        }
-        for(Vehiculo vehiculo:listApoyos){
-            if(vehiculo.getMisionCompletadas()>50){
-                vehiculosMisionesCompletadas.add(vehiculo);
-            }
-        }
-        return vehiculosMisionesCompletadas;
+        return false;
     }
 }
