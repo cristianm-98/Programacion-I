@@ -8,12 +8,11 @@ public class Mision {
     private LocalDate fechaMision;
     private String ubicacion;
     private LinkedList<String>listaPersonalAsignado;
-    private Vehiculo theVehiculo;
+    private Vehiculo vehiculo;
 
-    public Mision(String id,LocalDate fechaMision, String ubicacion) {
+    public Mision(String id,LocalDate fechaMision, String ubicacion,LinkedList<String>listaPersonalAsignado) {
         this.fechaMision = fechaMision;
         this.ubicacion = ubicacion;
-        listaPersonalAsignado=new LinkedList<>();
     }
 
     public String getId() {
@@ -48,12 +47,12 @@ public class Mision {
         this.listaPersonalAsignado = listaPersonalAsignado;
     }
 
-    public Vehiculo getTheVehiculo() {
-        return theVehiculo;
+    public Vehiculo getVehiculo() {
+        return vehiculo;
     }
 
-    public void setTheVehiculo(Vehiculo theVehiculo) {
-        this.theVehiculo = theVehiculo;
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     @Override
