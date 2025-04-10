@@ -48,9 +48,9 @@ public class Batallon {
     //-------------------Realizacion del CRUD------------------
 
     //Metodo para buscarVehiculo
-    public Vehiculo buscarVehiculo(String id){
-        for(Vehiculo vehiculo:listaVehiculos){
-            if(vehiculo.getId().equals(id)){
+    public Vehiculo buscarVehiculo(String id) {
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getId().equals(id)) {
                 return vehiculo;
             }
         }
@@ -68,9 +68,9 @@ public class Batallon {
     }
 
     //Metodo para Eliminar
-    public boolean eliminarVehiculo(String id){
-        for(Vehiculo vehiculo:listaVehiculos){
-            if(vehiculo.getId().equals(id)){
+    public boolean eliminarVehiculo(String id) {
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getId().equals(id)) {
                 listaVehiculos.remove(vehiculo);
                 return true;
             }
@@ -79,9 +79,9 @@ public class Batallon {
     }
 
     //Metodo para Actualizar
-    public boolean actulizarVehiculo(String id, String modelo, int fechaFabricacion,double kilometraje, EstadoOperativo estadoOperativo){
-        for(Vehiculo vehiculo:listaVehiculos){
-            if(vehiculo.getId().equals(id)){
+    public boolean actulizarVehiculo(String id, String modelo, int fechaFabricacion, double kilometraje, EstadoOperativo estadoOperativo) {
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getId().equals(id)) {
                 vehiculo.setId(id);
                 vehiculo.setModelo(modelo);
                 vehiculo.setFechaFabricacion(fechaFabricacion);
@@ -98,11 +98,11 @@ public class Batallon {
 
     //Metodo para obtener la lista de los Vehiculos
 
-    public LinkedList<Vehiculo>obtenerVehiculosConMisiones(){
-        LinkedList<Vehiculo>vehiculosMisionesCompleto=new LinkedList<>();
+    public LinkedList<Vehiculo> obtenerVehiculosConMisiones() {
+        LinkedList<Vehiculo> vehiculosMisionesCompleto = new LinkedList<>();
 
-        for(Vehiculo vehiculo:listaVehiculos){
-            if(vehiculo.getMisionCompletadas()>50){
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getMisionCompletadas() > 50) {
                 vehiculosMisionesCompleto.add(vehiculo);
             }
         }
@@ -113,66 +113,66 @@ public class Batallon {
 
     //Metodo para registar la mision
 
-    public void registrarMision(LocalDate fechaMision, String ubicacionMision, LinkedList<String>personalAsignado, String idVehiculo){
-        for(Vehiculo vehiculo:listaVehiculos){
-            if(vehiculo.getId().equals(idVehiculo)){
-                Mision newMision=new Mision(idVehiculo,fechaMision,ubicacionMision,personalAsignado);
+    public void registrarMision(LocalDate fechaMision, String ubicacionMision, LinkedList<String> personalAsignado, String idVehiculo) {
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getId().equals(idVehiculo)) {
+                Mision newMision = new Mision(idVehiculo, fechaMision, ubicacionMision, personalAsignado);
                 listaMisiones.add(newMision);
-                vehiculo.setMisionCompletadas(vehiculo.getMisionCompletadas()+1);
+                vehiculo.setMisionCompletadas(vehiculo.getMisionCompletadas() + 1);
                 break;
             }
         }
     }
 
     //Metodo para calcular el promedio del kilometraje de cada vehiculo
-    public String obtenerPromedioKilometrajeTipo(){
-        int contarVehiculoTropas=0;
-        int contarVehiculoBlindado=0;
-        int contarVehiculoApoyo=0;
-        double sumarKilometrajeTropas=0.0;
-        double sumarKilometrajeBlindado=0.0;
-        double sumarKilometrajeApoyo=0.0;
-        double promedioTropas=0.0;
-        double promedioBlindado=0.0;
-        double promedioApoyo=0.0;
+    public String obtenerPromedioKilometrajeTipo() {
+        int contarVehiculoTropas = 0;
+        int contarVehiculoBlindado = 0;
+        int contarVehiculoApoyo = 0;
+        double sumarKilometrajeTropas = 0.0;
+        double sumarKilometrajeBlindado = 0.0;
+        double sumarKilometrajeApoyo = 0.0;
+        double promedioTropas = 0.0;
+        double promedioBlindado = 0.0;
+        double promedioApoyo = 0.0;
 
-        for(Vehiculo vehiculo:listaVehiculos){
-            if(vehiculo instanceof VehiculoTransporteTropa){
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo instanceof VehiculoTransporteTropa) {
                 contarVehiculoTropas++;
-                sumarKilometrajeTropas+=vehiculo.getKilometraje();
-            }else if (vehiculo instanceof VehiculoBlindado){
+                sumarKilometrajeTropas += vehiculo.getKilometraje();
+            } else if (vehiculo instanceof VehiculoBlindado) {
                 contarVehiculoBlindado++;
-                sumarKilometrajeBlindado+=vehiculo.getKilometraje();
-            }else if(vehiculo instanceof VehiculoApoyo){
+                sumarKilometrajeBlindado += vehiculo.getKilometraje();
+            } else if (vehiculo instanceof VehiculoApoyo) {
                 contarVehiculoApoyo++;
-                sumarKilometrajeApoyo+=vehiculo.getKilometraje();
+                sumarKilometrajeApoyo += vehiculo.getKilometraje();
             }
 
         }
-        if(contarVehiculoTropas>0){
-            promedioTropas=sumarKilometrajeTropas/contarVehiculoTropas;
+        if (contarVehiculoTropas > 0) {
+            promedioTropas = sumarKilometrajeTropas / contarVehiculoTropas;
         }
-        if (contarVehiculoBlindado>0) {
+        if (contarVehiculoBlindado > 0) {
             promedioBlindado = sumarKilometrajeBlindado / contarVehiculoBlindado;
         }
-        if (contarVehiculoApoyo>0){
-            promedioApoyo=sumarKilometrajeApoyo/contarVehiculoApoyo;
+        if (contarVehiculoApoyo > 0) {
+            promedioApoyo = sumarKilometrajeApoyo / contarVehiculoApoyo;
         }
-        String resultado= "Promedio de Vehiculo Tropas " + promedioTropas + "\n";
-        resultado+= "Promedio de Vehiculo Blindado " + promedioBlindado + "\n";
-        resultado+= "Promedio de Vehiculo Apoyo " + promedioApoyo;
+        String resultado = "Promedio de Vehiculo Tropas " + promedioTropas + "\n";
+        resultado += "Promedio de Vehiculo Blindado " + promedioBlindado + "\n";
+        resultado += "Promedio de Vehiculo Apoyo " + promedioApoyo;
 
         return resultado;
     }
 
     //Metodo para mostrar todas las misiones, por ubicacion y rango de fecha
 
-    public LinkedList<Mision> obtenerListaMisiones(String ubicacion,LocalDate fechaInicio, LocalDate fechaFinal){
-        LinkedList<Mision>misionesFiltradas=new LinkedList<>();
+    public LinkedList<Mision> obtenerListaMisiones(String ubicacion, LocalDate fechaInicio, LocalDate fechaFinal) {
+        LinkedList<Mision> misionesFiltradas = new LinkedList<>();
 
-        for(Mision mision:listaMisiones){
-            if(mision.getUbicacion().equals(ubicacion) && mision.getFechaMision().isAfter(fechaInicio) || mision.getFechaMision().equals(fechaInicio) &&
-                    mision.getFechaMision().isBefore(fechaFinal) || mision.getFechaMision().equals(fechaFinal)){
+        for (Mision mision : listaMisiones) {
+            if (mision.getUbicacion().equals(ubicacion) && mision.getFechaMision().isAfter(fechaInicio) || mision.getFechaMision().equals(fechaInicio) &&
+                    mision.getFechaMision().isBefore(fechaFinal) || mision.getFechaMision().equals(fechaFinal)) {
                 misionesFiltradas.add(mision);
 
             }
@@ -181,23 +181,88 @@ public class Batallon {
     }
 
     //Metodo para retornar el vehiculo
-    public LinkedList<Vehiculo>listaVehiculosConMayorMisiones(int misionesCompletadas) {
-        LinkedList<Vehiculo>vehiculoConMasMisiones=new LinkedList<>();
-        int maximoMisiones=0;
-        for(Vehiculo vehiculo:listaVehiculos){
-            if(vehiculo.getMisionCompletadas()>maximoMisiones){
-                maximoMisiones=vehiculo.getMisionCompletadas();
+    public LinkedList<Vehiculo> listaVehiculosConMayorMisiones(int misionesCompletadas) {
+        LinkedList<Vehiculo> vehiculoConMasMisiones = new LinkedList<>();
+        int maximoMisiones = 0;
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getMisionCompletadas() > maximoMisiones) {
+                maximoMisiones = vehiculo.getMisionCompletadas();
                 vehiculoConMasMisiones.clear();
                 vehiculoConMasMisiones.add(vehiculo);
-            }else if(vehiculo.getMisionCompletadas()==maximoMisiones){
+            } else if (vehiculo.getMisionCompletadas() == maximoMisiones) {
                 vehiculoConMasMisiones.add(vehiculo);
             }
         }
         return vehiculoConMasMisiones;
 
     }
-    //--------------Fin de metodos del taller Batallon-----------------
 
+    //Metodo para ordenar los vehiculos por tipo y modelo
+
+    public LinkedList<Vehiculo> ordenarVehiculoPorTipoModelo(LinkedList<Vehiculo> listaVehiculos, int anioFabricacion) {
+        LinkedList<Vehiculo> vehiculoFiltrado = new LinkedList<>();
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getFechaFabricacion() == anioFabricacion) {
+                vehiculoFiltrado.add(vehiculo);
+            }
+        }
+        for (int i = 0; i < vehiculoFiltrado.size() - 1; i++) {
+            for (int j = 0; j < vehiculoFiltrado.size() - 1 - i; j++) {
+                Vehiculo v1 = vehiculoFiltrado.get(j);
+                Vehiculo v2 = vehiculoFiltrado.get(j + 1);
+
+                if (v1.getEstadoOperativo().compareTo(v2.getEstadoOperativo()) > 0 ||
+                        (v1.getEstadoOperativo().compareTo(v2.getEstadoOperativo()) == 0 && v1.getModelo().compareTo(v2.getModelo()) > 0)) {
+                    Vehiculo temporal = v1;
+                    vehiculoFiltrado.set(j, v2);
+                    vehiculoFiltrado.set(j + 1, temporal);
+                }
+            }
+
+        }
+        return vehiculoFiltrado;
+
+    }
+    //Metodo para ordenar la lista de vehiculos por misiones completadas
+
+    public LinkedList<Vehiculo> ordenarVehiculoMision(LinkedList<Vehiculo> listaVehiculos) {
+        for (int i = 0; i < listaVehiculos.size() - 1; i++) {
+            for (int j = 0; j < listaVehiculos.size() - 1 - i; j++) {
+                Vehiculo v1 = listaVehiculos.get(j);
+                Vehiculo v2 = listaVehiculos.get(j + 1);
+
+                if (v1.getMisionCompletadas() < v2.getMisionCompletadas()) {
+                    Vehiculo temporal = v1;
+                    listaVehiculos.set(j, v2);
+                    listaVehiculos.set(j + 1, temporal);
+                }
+            }
+        }
+        return listaVehiculos;
+
+        //-----------------Fin de metodos del taller Batallon
+
+    }
+}
+
+
+
+//---------------------------------------------------------
+    /*
+    public static void ordenarPorPlaca(ArrayList<Vehiculo> vehiculos) {
+        int n = vehiculos.size();
+        for (int i = 0; i < n - 1; i++) {
+            // En cada pasada, se comparan los elementos adyacentes
+            for (int j = 0; j < n - i - 1; j++) {
+                // Si la placa del vehículo actual es mayor que la del siguiente, se intercambian
+                if (vehiculos.get(j).getPlaca().compareTo(vehiculos.get(j + 1).getPlaca()) > 0) {
+                    Vehiculo temp = vehiculos.get(j);
+                    vehiculos.set(j, vehiculos.get(j + 1));
+                    vehiculos.set(j + 1, temp);
+                }
+            }
+        }
+    }
 
     public boolean estaDisponible(String id){
         for(Vehiculo vehiculo:listaVehiculos){
@@ -208,3 +273,4 @@ public class Batallon {
         return false;
     }
 }
+*/
