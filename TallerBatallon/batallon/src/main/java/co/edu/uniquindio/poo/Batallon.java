@@ -1,6 +1,7 @@
 package co.edu.uniquindio.poo;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class Batallon {
@@ -41,8 +42,7 @@ public class Batallon {
 
     @Override
     public String toString() {
-        return "DATOS DEL BATALLON \n"
-                + " Nombre" + nombre;
+        return "DATOS DEL BATALLON \n" + " Nombre" + nombre;
     }
 
     //-------------------Realizacion del CRUD------------------
@@ -96,6 +96,8 @@ public class Batallon {
 
     //------------Finalizacion del CRUD------------------
 
+    //--------------Inicio de metodos del taller Batallon--------------------
+
     //Metodo para obtener la lista de los Vehiculos
 
     public LinkedList<Vehiculo> obtenerVehiculosConMisiones() {
@@ -108,8 +110,6 @@ public class Batallon {
         }
         return vehiculosMisionesCompleto;
     }
-
-    //--------------Inicio de metodos del taller Batallon--------------------
 
     //Metodo para registar la mision
 
@@ -171,8 +171,7 @@ public class Batallon {
         LinkedList<Mision> misionesFiltradas = new LinkedList<>();
 
         for (Mision mision : listaMisiones) {
-            if (mision.getUbicacion().equals(ubicacion) && mision.getFechaMision().isAfter(fechaInicio) || mision.getFechaMision().equals(fechaInicio) &&
-                    mision.getFechaMision().isBefore(fechaFinal) || mision.getFechaMision().equals(fechaFinal)) {
+            if (mision.getUbicacion().equals(ubicacion) && mision.getFechaMision().isAfter(fechaInicio) || mision.getFechaMision().equals(fechaInicio) && mision.getFechaMision().isBefore(fechaFinal) || mision.getFechaMision().equals(fechaFinal)) {
                 misionesFiltradas.add(mision);
 
             }
@@ -206,13 +205,13 @@ public class Batallon {
                 vehiculoFiltrado.add(vehiculo);
             }
         }
+
         for (int i = 0; i < vehiculoFiltrado.size() - 1; i++) {
             for (int j = 0; j < vehiculoFiltrado.size() - 1 - i; j++) {
                 Vehiculo v1 = vehiculoFiltrado.get(j);
                 Vehiculo v2 = vehiculoFiltrado.get(j + 1);
 
-                if (v1.getEstadoOperativo().compareTo(v2.getEstadoOperativo()) > 0 ||
-                        (v1.getEstadoOperativo().compareTo(v2.getEstadoOperativo()) == 0 && v1.getModelo().compareTo(v2.getModelo()) > 0)) {
+                if (v1.getEstadoOperativo().compareTo(v2.getEstadoOperativo()) > 0 || (v1.getEstadoOperativo().compareTo(v2.getEstadoOperativo()) == 0 && v1.getModelo().compareTo(v2.getModelo()) > 0)) {
                     Vehiculo temporal = v1;
                     vehiculoFiltrado.set(j, v2);
                     vehiculoFiltrado.set(j + 1, temporal);
@@ -224,6 +223,7 @@ public class Batallon {
 
     }
     //Metodo para ordenar la lista de vehiculos por misiones completadas
+
 
     public LinkedList<Vehiculo> ordenarVehiculoMision(LinkedList<Vehiculo> listaVehiculos) {
         for (int i = 0; i < listaVehiculos.size() - 1; i++) {
@@ -239,12 +239,43 @@ public class Batallon {
             }
         }
         return listaVehiculos;
+    }
 
-        //-----------------Fin de metodos del taller Batallon
+    public void actualizarEstadosVehiculos(LinkedList<Vehiculo> listaVehiculos, double kilometraje, LocalDate fechaActual, LinkedList<Mision> listaMisiones) {
+        int contadorDisponible = 0;
+        int contadorMision = 0;
+        int contadorMantenimiento = 0;
+        double umbralKilometraje = kilometraje;
+
+
+        for (Vehiculo vehiculo : listaVehiculos) {
+            if (vehiculo.getKilometraje() > umbralKilometraje) {
+                vehiculo.setEstadoOperativo(EstadoOperativo.MANTENIMIENTO);
+                contadorMantenimiento++;
+            } else {
+                boolean enMision = false;
+                for (Mision mision : listaMisiones) {
+                    if (mision.getFechaMision().isEqual(fechaActual) || mision.getFechaMision().isAfter(fechaActual)) {
+                        enMision = true;
+                        break;
+                    }
+                }
+                if (enMision) {
+                    vehiculo.setEstadoOperativo(EstadoOperativo.MISION);
+                    contadorMision++;
+                } else {
+                    vehiculo.setEstadoOperativo(EstadoOperativo.DISPONIBLE);
+                    contadorDisponible++;
+                }
+            }
+        }
 
     }
-}
 
+        //-----------------Fin de metodos del taller Batallon--------------------
+
+
+}
 
 
 //---------------------------------------------------------

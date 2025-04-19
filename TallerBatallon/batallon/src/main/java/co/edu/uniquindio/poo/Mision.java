@@ -7,10 +7,10 @@ public class Mision {
     private String id;
     private LocalDate fechaMision;
     private String ubicacion;
-    private LinkedList<String>listaPersonalAsignado;
+    private LinkedList<String> listaPersonalAsignado;
     private Vehiculo vehiculo;
 
-    public Mision(String id,LocalDate fechaMision, String ubicacion,LinkedList<String>listaPersonalAsignado) {
+    public Mision(String id, LocalDate fechaMision, String ubicacion, LinkedList<String> listaPersonalAsignado) {
         this.fechaMision = fechaMision;
         this.ubicacion = ubicacion;
     }
