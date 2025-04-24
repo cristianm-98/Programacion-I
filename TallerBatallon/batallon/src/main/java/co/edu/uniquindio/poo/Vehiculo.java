@@ -19,6 +19,8 @@ public abstract class Vehiculo {
         this.misionCompletadas = 0;
         this.estadoOperativo = estadoOperativo;
         listaMisiones=new LinkedList<>();
+
+
     }
 
     public String getId() {

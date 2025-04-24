@@ -7,12 +7,13 @@ public class Mision {
     private String id;
     private LocalDate fechaMision;
     private String ubicacion;
-    private LinkedList<String> listaPersonalAsignado;
     private Vehiculo vehiculo;
+    private LinkedList<Soldado>listaSoldados;
 
-    public Mision(String id, LocalDate fechaMision, String ubicacion, LinkedList<String> listaPersonalAsignado) {
+    public Mision(String id, LocalDate fechaMision, String ubicacion) {
         this.fechaMision = fechaMision;
         this.ubicacion = ubicacion;
+        listaSoldados=new LinkedList<>();
     }
 
     public String getId() {
@@ -39,14 +40,6 @@ public class Mision {
         this.ubicacion = ubicacion;
     }
 
-    public LinkedList<String> getListaPersonalAsignado() {
-        return listaPersonalAsignado;
-    }
-
-    public void setListaPersonalAsignado(LinkedList<String> listaPersonalAsignado) {
-        this.listaPersonalAsignado = listaPersonalAsignado;
-    }
-
     public Vehiculo getVehiculo() {
         return vehiculo;
     }
@@ -55,12 +48,19 @@ public class Mision {
         this.vehiculo = vehiculo;
     }
 
+    public LinkedList<Soldado> getListaSoldados() {
+        return listaSoldados;
+    }
+
+    public void setListaSoldados(LinkedList<Soldado> listaSoldados) {
+        this.listaSoldados = listaSoldados;
+    }
+
     @Override
     public String toString() {
         return "Mision{" +
                 "fechaMision=" + fechaMision +
                 ", ubicacion='" + ubicacion + '\'' +
-                ", personalAsignado='" + listaPersonalAsignado + '\'' +
                 '}';
     }
 }

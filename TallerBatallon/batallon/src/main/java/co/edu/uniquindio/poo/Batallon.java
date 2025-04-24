@@ -113,10 +113,10 @@ public class Batallon {
 
     //Metodo para registar la mision
 
-    public void registrarMision(LocalDate fechaMision, String ubicacionMision, LinkedList<String> personalAsignado, String idVehiculo) {
+    public void registrarMision(LocalDate fechaMision, String ubicacionMision, String idVehiculo) {
         for (Vehiculo vehiculo : listaVehiculos) {
             if (vehiculo.getId().equals(idVehiculo)) {
-                Mision newMision = new Mision(idVehiculo, fechaMision, ubicacionMision, personalAsignado);
+                Mision newMision = new Mision(idVehiculo, fechaMision, ubicacionMision);
                 listaMisiones.add(newMision);
                 vehiculo.setMisionCompletadas(vehiculo.getMisionCompletadas() + 1);
                 break;
@@ -271,37 +271,6 @@ public class Batallon {
         }
 
     }
-
         //-----------------Fin de metodos del taller Batallon--------------------
 
-
 }
-
-
-//---------------------------------------------------------
-    /*
-    public static void ordenarPorPlaca(ArrayList<Vehiculo> vehiculos) {
-        int n = vehiculos.size();
-        for (int i = 0; i < n - 1; i++) {
-            // En cada pasada, se comparan los elementos adyacentes
-            for (int j = 0; j < n - i - 1; j++) {
-                // Si la placa del vehículo actual es mayor que la del siguiente, se intercambian
-                if (vehiculos.get(j).getPlaca().compareTo(vehiculos.get(j + 1).getPlaca()) > 0) {
-                    Vehiculo temp = vehiculos.get(j);
-                    vehiculos.set(j, vehiculos.get(j + 1));
-                    vehiculos.set(j + 1, temp);
-                }
-            }
-        }
-    }
-
-    public boolean estaDisponible(String id){
-        for(Vehiculo vehiculo:listaVehiculos){
-            if(vehiculo.getId().equals(id) && vehiculo.estadoOperativo.equals(EstadoOperativo.DISPONIBLE)){
-                return true;
-            }
-        }
-        return false;
-    }
-}
-*/
