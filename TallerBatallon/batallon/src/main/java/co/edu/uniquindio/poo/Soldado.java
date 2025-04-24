@@ -1,5 +1,7 @@
 package co.edu.uniquindio.poo;
 
+import java.util.Objects;
+
 public class Soldado {
     private String id;
     private String nombre;

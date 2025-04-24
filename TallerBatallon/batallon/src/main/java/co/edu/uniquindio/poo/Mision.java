@@ -56,6 +56,8 @@ public class Mision {
         this.listaSoldados = listaSoldados;
     }
 
+    //---------------Inicio de Metodos del taller Batallon-------------------
+
     public boolean agregarSoldado(Soldado soldado, Mision mision) {
         if (soldado.isDisponible()) {
             mision.getListaSoldados().add(soldado);
@@ -74,39 +76,42 @@ public class Mision {
     public LinkedList<Soldado> buscarEspecialidad(String funcion) {
         LinkedList<Soldado> listaEspecializado = new LinkedList<>();
         for (Soldado soldado : listaSoldados) {
-            if (soldado.getFuncion().equals(funcion)) {
+            if (soldado.getFuncion().equalsIgnoreCase(funcion)) {
                 listaEspecializado.add(soldado);
             }
         }
         return listaEspecializado;
     }
 
-    public LinkedList<Soldado>soldadoRango(Rango rango,boolean disponible){
-        LinkedList<Soldado>listaSoldadoRango=new LinkedList<>();
-        for(Soldado soldado:listaSoldados){
-            if (soldado.isDisponible()==disponible && soldado.getRango()==rango){
+    public LinkedList<Soldado> soldadoRango(Rango rango, boolean disponible) {
+        LinkedList<Soldado> listaSoldadoRango = new LinkedList<>();
+        for (Soldado soldado : listaSoldados) {
+            if (soldado.getRango() == rango && soldado.isDisponible() == disponible) {
                 listaSoldadoRango.add(soldado);
             }
         }
         return listaSoldadoRango;
     }
-    public double calcularEdades(){
-        int contarEdad=0;
-        double promedio=0.0;
-        for(Soldado soldado:listaSoldados) {
+
+    public double calcularEdades() {
+        int contarEdad = 0;
+        double promedio = 0.0;
+        for (Soldado soldado : listaSoldados) {
             contarEdad = contarEdad + soldado.getEdad();
         }
-        if(listaSoldados.size()>0) {
-            promedio = (double)contarEdad / listaSoldados.size();
+        if (listaSoldados.size() > 0) {
+            promedio = (double) contarEdad / listaSoldados.size();
         }
         return promedio;
     }
-    public Soldado buscarSoldado(String idSoldado){
-        for(Soldado soldado:listaSoldados){
-            if(soldado.getId().equals(idSoldado)){
+
+    public Soldado buscarSoldado(String idSoldado) {
+        for (Soldado soldado : listaSoldados) {
+            if (soldado.getId().equals(idSoldado)) {
                 return soldado;
             }
         }
         return null;
     }
+    //---------------Fin de Metodos de taller Batallon--------------
 }
