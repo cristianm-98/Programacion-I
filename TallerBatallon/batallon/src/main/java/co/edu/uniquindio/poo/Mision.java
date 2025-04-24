@@ -8,12 +8,12 @@ public class Mision {
     private LocalDate fechaMision;
     private String ubicacion;
     private Vehiculo vehiculo;
-    private LinkedList<Soldado>listaSoldados;
+    private LinkedList<Soldado> listaSoldados;
 
     public Mision(String id, LocalDate fechaMision, String ubicacion) {
         this.fechaMision = fechaMision;
         this.ubicacion = ubicacion;
-        listaSoldados=new LinkedList<>();
+        listaSoldados = new LinkedList<>();
     }
 
     public String getId() {
@@ -56,11 +56,57 @@ public class Mision {
         this.listaSoldados = listaSoldados;
     }
 
-    @Override
-    public String toString() {
-        return "Mision{" +
-                "fechaMision=" + fechaMision +
-                ", ubicacion='" + ubicacion + '\'' +
-                '}';
+    public boolean agregarSoldado(Soldado soldado, Mision mision) {
+        if (soldado.isDisponible()) {
+            mision.getListaSoldados().add(soldado);
+            soldado.setDisponible(false);
+            return true;
+        }
+        return false;
+    }
+
+    public void cambiarEstado(Mision mision) {
+        for (Soldado soldado : mision.getListaSoldados()) {
+            soldado.setDisponible(true);
+        }
+    }
+
+    public LinkedList<Soldado> buscarEspecialidad(String funcion) {
+        LinkedList<Soldado> listaEspecializado = new LinkedList<>();
+        for (Soldado soldado : listaSoldados) {
+            if (soldado.getFuncion().equals(funcion)) {
+                listaEspecializado.add(soldado);
+            }
+        }
+        return listaEspecializado;
+    }
+
+    public LinkedList<Soldado>soldadoRango(Rango rango,boolean disponible){
+        LinkedList<Soldado>listaSoldadoRango=new LinkedList<>();
+        for(Soldado soldado:listaSoldados){
+            if (soldado.isDisponible()==disponible && soldado.getRango()==rango){
+                listaSoldadoRango.add(soldado);
+            }
+        }
+        return listaSoldadoRango;
+    }
+    public double calcularEdades(){
+        int contarEdad=0;
+        double promedio=0.0;
+        for(Soldado soldado:listaSoldados) {
+            contarEdad = contarEdad + soldado.getEdad();
+        }
+        if(listaSoldados.size()>0) {
+            promedio = (double)contarEdad / listaSoldados.size();
+        }
+        return promedio;
+    }
+    public Soldado buscarSoldado(String idSoldado){
+        for(Soldado soldado:listaSoldados){
+            if(soldado.getId().equals(idSoldado)){
+                return soldado;
+            }
+        }
+        return null;
     }
 }

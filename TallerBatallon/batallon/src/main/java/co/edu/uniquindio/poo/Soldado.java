@@ -6,14 +6,16 @@ public class Soldado {
     private int edad;
     private boolean disponible;
     private String funcion;
+    private Rango rango;
 
 
-    public Soldado(String id, String nombre, int edad, boolean disponible, String funcion) {
+    public Soldado(String id, String nombre, int edad, boolean disponible, String funcion, Rango rango) {
         this.id = id;
         this.nombre = nombre;
         this.edad = edad;
         this.disponible = disponible;
         this.funcion = funcion;
+        this.rango=rango;
     }
     public String getId() {
         return id;
@@ -53,5 +55,13 @@ public class Soldado {
 
     public void setFuncion(String funcion) {
         this.funcion = funcion;
+    }
+
+    public Rango getRango() {
+        return rango;
+    }
+
+    public void setRango(Rango rango) {
+        this.rango = rango;
     }
 }
